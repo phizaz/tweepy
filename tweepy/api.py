@@ -225,7 +225,7 @@ class API(object):
             method='POST',
             payload_type='status',
             allowed_param=[
-                'status', 'possibly_sensitive', 'in_reply_to_status_id', 'in_reply_to_status_id_str', 
+                'status', 'possibly_sensitive', 'in_reply_to_status_id', 'in_reply_to_status_id_str',
                 'lat', 'long', 'place_id', 'display_coordinates'
             ],
             require_auth=True
@@ -531,11 +531,12 @@ class API(object):
         """ :reference: https://dev.twitter.com/rest/reference/get/friends/list
             :allowed_param:'id', 'user_id', 'screen_name', 'cursor', 'skip_status', 'include_user_entities'
         """
+        # konpat: add 'count' since twitter's api accepts
         return bind_api(
             api=self,
             path='/friends/list.json',
             payload_type='user', payload_list=True,
-            allowed_param=['id', 'user_id', 'screen_name', 'cursor', 'skip_status', 'include_user_entities']
+            allowed_param=['id', 'user_id', 'screen_name', 'cursor', 'count', 'skip_status', 'include_user_entities']
         )
 
     @property
